@@ -1,0 +1,17 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Set R53 entry
+      route53:
+        state: present
+        zone: browserstack.com
+        record: "{{ nickname }}"
+        type: A
+        ttl: 300
+        value: "{{ inventory_hostname }}"
+        wait: yes
+      delegate_to: 127.0.0.1
+      when: set_r53 is defined and set_r53
+      tags:
+        - r53_entry
