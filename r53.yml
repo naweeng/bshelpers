@@ -5,7 +5,7 @@
     - name: Set R53 entry
       route53:
         state: present
-        zone: browserstack.com
+        zone: "{{ zone_name }}"
         record: "{{ nickname }}"
         type: A
         ttl: 300
